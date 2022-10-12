@@ -3,7 +3,7 @@ let ctx = canvas.getContext('2d');
 let colors = ['pink', 'gray', 'cornflowerblue', 'red', 'orange', 'purple', 'yellow'];
 let mouse = {
     x: window.innerWidth / 2,
-    y: windows.innerHeight / 2
+    y: window.innerHeight / 2
 };
 
 let particles;
