@@ -1,4 +1,4 @@
-let canvas = document.qwerySelector('canvas');
+let canvas = document.querySelector('canvas');
 let ctx = canvas.getContext('2d');
 let colors = ['pink', 'gray', 'cornflowerblue', 'red', 'orange', 'purple', 'yellow'];
 let mouse = {
