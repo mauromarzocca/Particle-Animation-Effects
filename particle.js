@@ -21,7 +21,7 @@ class Particle {
             x: mouse.x,
             y: mouse.y
         }
-        this.speed = 5;
+        this.speed = 15;
         this.velocity = {
             x: Math.random() * this.speed,
             y: Math.random() * this.speed
