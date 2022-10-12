@@ -7,7 +7,7 @@ let mouse = {
 };
 
 let particles;
-let particleCount = 400;
+let particleCount = 300;
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
@@ -29,9 +29,57 @@ class Particle {
         this.size = Math.random() * 5;
         this.color = colors[Math.floor(Math.random() * colors.length)];
 
-        if(Math.random() < .5) {}
+        if(Math.random() < .5) {
+            this.velocity.x *= -1;
+        }
+
+        if(Math.random() < .5) {
+            this.velocity.y *= -1;
+        }
     }
 
-    draw() {}
-    update() {}
+    draw() {
+        ctx.beginPath();
+        ctx.fillStyle = this.color;
+        ctx.arc(this.position.x, this.position.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+    }
+    update() {
+        this.position.x += this.velocity.x;
+        this.position.y += this.velocity.y;
+
+        if(this.isDead()) {
+            this.init();
+        }
+        
+        this.draw()
+    }
+
+    isDead() {
+        return this.position.x < 0 || this.position.y < 0 || this.position.x > window.innerWidth || this.position.y > window.innerHeight;
+    }
 }
+
+particles = Array.from(Array(particleCount), () => new Particle());
+
+requestAnimationFrame(update);
+
+function update() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    particles.forEach(particle => particle.update());
+
+    requestAnimationFrame(update);
+}
+
+// Events
+
+document.body.addEventListener('mousemove', function(e) {
+    mouse.x = e.pageX;
+    mouse.y = e.pageY;
+});
+
+window.addEventListener('resize', function() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+})
