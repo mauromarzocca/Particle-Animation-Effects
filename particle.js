@@ -24,11 +24,14 @@ class Particle {
         this.speed = 5;
         this.velocity = {
             x: Math.random() * this.speed,
-            y = Math.random() * this.speed
+            y: Math.random() * this.speed
         }
         this.size = Math.random() * 5;
         this.color = colors[Math.floor(Math.random() * colors.length)];
 
         if(Math.random() < .5) {}
     }
+
+    draw() {}
+    update() {}
 }
